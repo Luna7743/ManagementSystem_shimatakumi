@@ -25,14 +25,15 @@
                         <div class="" style="width:140px">
                             <label class="d-block m-0" style="font-size:13px">姓</label>
                             <div class="border-bottom border-primary" style="width:140px;">
-                                <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
+                                <input type="text" style="width:140px;" class="border-0 over_name" name="over_name" value="{{ old('over_name') }}">
+                                <span class="error_message">{{ $errors->first('over_name') }}</span>
                             </div>
                         </div>
                         <div class="" style="width:140px">
                             <label class=" d-block m-0" style="font-size:13px">名</label>
                             <div class="border-bottom border-primary" style="width:140px;">
-                                <input type="text" style="width:140px;" class="border-0 under_name"
-                                    name="under_name">
+                                <input type="text" style="width:140px;" class="border-0 under_name" name="under_name" value="{{ old('under_name') }}">
+                                <span class="error_message">{{ $errors->first('under_name') }}</span>
                             </div>
                         </div>
                     </div>
@@ -40,32 +41,34 @@
                         <div class="" style="width:140px">
                             <label class="d-block m-0" style="font-size:13px">セイ</label>
                             <div class="border-bottom border-primary" style="width:140px;">
-                                <input type="text" style="width:140px;" class="border-0 over_name_kana"
-                                    name="over_name_kana">
+                                <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana" value="{{ old('over_name_kana') }}">
+                                <span class="error_message">{{ $errors->first('over_name_kana') }}</span>
                             </div>
                         </div>
                         <div class="" style="width:140px">
                             <label class="d-block m-0" style="font-size:13px">メイ</label>
                             <div class="border-bottom border-primary" style="width:140px;">
-                                <input type="text" style="width:140px;" class="border-0 under_name_kana"
-                                    name="under_name_kana">
+                                <input type="text" style="width:140px;" class="border-0 under_name_kana" name="under_name_kana" value="{{ old('under_name_kana') }}">
+                                <span class="error_message">{{ $errors->first('under_name_kana') }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="mt-3">
                         <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
                         <div class="border-bottom border-primary">
-                            <input type="mail" class="w-100 border-0 mail_address" name="mail_address">
+                            <input type="mail" class="w-100 border-0 mail_address" name="mail_address" value="{{ old('mail_address') }}">
+                            <span class="error_message">{{ $errors->first('mail_address') }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="mt-3">
-                    <input type="radio" name="sex" class="sex" value="1">
+                    <input type="radio" name="sex" class="sex" value="1" {{ old('sex') === '1' ? 'checked' : '' }}>
                     <label style="font-size:13px">男性</label>
-                    <input type="radio" name="sex" class="sex" value="2">
+                    <input type="radio" name="sex" class="sex" value="2" {{ old('sex') === '1' ? 'checked' : '' }}>
                     <label style="font-size:13px">女性</label>
-                    <input type="radio" name="sex" class="sex" value="3">
+                    <input type="radio" name="sex" class="sex" value="3" {{ old('sex') === '1' ? 'checked' : '' }}>
                     <label style="font-size:13px">その他</label>
+                    <span class="error_message">{{ $errors->first('sex') }}</span>
                 </div>
                 <div class="mt-3">
                     <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
@@ -99,6 +102,8 @@
                         <option value="2010">2010</option>
                     </select>
                     <label style="font-size:13px">年</label>
+                    <span class="error_message">{{ $errors->first('old_year') }}</span>
+
                     <select class="old_month" name="old_month">
                         <option value="none">-----</option>
                         <option value="01">1</option>
@@ -115,6 +120,8 @@
                         <option value="12">12</option>
                     </select>
                     <label style="font-size:13px">月</label>
+                    <span class="error_message">{{ $errors->first('old_month') }}</span>
+
                     <select class="old_day" name="old_day">
                         <option value="none">-----</option>
                         <option value="01">1</option>
@@ -150,17 +157,27 @@
                         <option value="31">31</option>
                     </select>
                     <label style="font-size:13px">日</label>
+                    <span class="error_message">{{ $errors->first('old_day') }}</span>
+
+
                 </div>
+
                 <div class="mt-3">
                     <label class="d-block m-0" style="font-size:13px">役職</label>
-                    <input type="radio" name="role" class="admin_role role" value="1">
+
+                    <input type="radio" name="role" class="admin_role role" value="1" {{ old('sex') === '1' ? 'checked' : '' }}>
                     <label style="font-size:13px">教師(国語)</label>
-                    <input type="radio" name="role" class="admin_role role" value="2">
+
+                    <input type="radio" name="role" class="admin_role role" value="2" {{ old('sex') === '1' ? 'checked' : '' }}>
                     <label style="font-size:13px">教師(数学)</label>
-                    <input type="radio" name="role" class="admin_role role" value="3">
+
+                    <input type="radio" name="role" class="admin_role role" value="3" {{ old('sex') === '1' ? 'checked' : '' }}>
                     <label style="font-size:13px">教師(英語)</label>
-                    <input type="radio" name="role" class="other_role role" value="4">
+
+                    <input type="radio" name="role" class="other_role role" value="4" {{ old('sex') === '1' ? 'checked' : '' }}>
                     <label style="font-size:13px" class="other_role">生徒</label>
+
+                    <span class="error_message">{{ $errors->first('role') }}</span>
                 </div>
                 <div class="select_teacher d-none">
                     <label class="d-block m-0" style="font-size:13px">選択科目</label>
@@ -174,13 +191,15 @@
                 <div class="mt-3">
                     <label class="d-block m-0" style="font-size:13px">パスワード</label>
                     <div class="border-bottom border-primary">
-                        <input type="password" class="border-0 w-100 password" name="password">
+                        <input type="password" class="border-0 w-100 password" name="password" value="{{ old('password') }}">
+                        <span class="error_message">{{ $errors->first('password') }}</span>
                     </div>
                 </div>
                 <div class="mt-3">
                     <label class="d-block m-0" style="font-size:13px">確認用パスワード</label>
                     <div class="border-bottom border-primary">
-                        <input type="password" class="border-0 w-100 password_confirmation" name="password">
+                        <input type="password" class="border-0 w-100 password_confirmation" name="password" value="{{ old('password') }}">
+                        <span class="error_message">{{ $errors->first('password') }}</span>
                     </div>
                 </div>
                 <div class="mt-5 text-right">

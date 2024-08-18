@@ -1,5 +1,6 @@
 <?php
 
+//Laravelでリクエストのバリデーションを処理するためのカスタムリクエストクラスです
 namespace App\Http\Requests\BulletinBoard;
 
 use Illuminate\Foundation\Http\FormRequest;

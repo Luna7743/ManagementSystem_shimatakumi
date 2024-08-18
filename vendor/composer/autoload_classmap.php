@@ -51,6 +51,8 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\Rules\\Katakana' => $baseDir . '/app/Rules/Katakana.php',
+    'App\\Rules\\ValidDate' => $baseDir . '/app/Rules/ValidDate.php',
     'App\\Searchs\\AllUsers' => $baseDir . '/app/Searchs/AllUsers.php',
     'App\\Searchs\\DisplayUsers' => $baseDir . '/app/Searchs/DisplayUsers.php',
     'App\\Searchs\\SearchResultFactories' => $baseDir . '/app/Searchs/SearchResultFactories.php',

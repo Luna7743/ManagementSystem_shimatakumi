@@ -480,6 +480,8 @@ class ComposerStaticInite8fd1712de826aad53f5add106203fa9
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Rules\\Katakana' => __DIR__ . '/../..' . '/app/Rules/Katakana.php',
+        'App\\Rules\\ValidDate' => __DIR__ . '/../..' . '/app/Rules/ValidDate.php',
         'App\\Searchs\\AllUsers' => __DIR__ . '/../..' . '/app/Searchs/AllUsers.php',
         'App\\Searchs\\DisplayUsers' => __DIR__ . '/../..' . '/app/Searchs/DisplayUsers.php',
         'App\\Searchs\\SearchResultFactories' => __DIR__ . '/../..' . '/app/Searchs/SearchResultFactories.php',
