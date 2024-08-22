@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        //新しいテーブルをデータベースに作成します。
         Schema::create('users', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->comment('id');
             $table->string('over_name', 60)->index('over_name')->comment('姓');

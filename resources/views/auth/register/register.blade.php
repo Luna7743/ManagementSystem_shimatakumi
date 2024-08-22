@@ -71,6 +71,7 @@
                     <span class="error_message">{{ $errors->first('sex') }}</span>
                 </div>
                 <div class="mt-3">
+                    <span class="error_message">{{ $errors->first('birth_day') }}</span>
                     <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
                     <select class="old_year" name="old_year">
                         <option value="none">-----</option>
@@ -102,7 +103,6 @@
                         <option value="2010">2010</option>
                     </select>
                     <label style="font-size:13px">年</label>
-                    <span class="error_message">{{ $errors->first('old_year') }}</span>
 
                     <select class="old_month" name="old_month">
                         <option value="none">-----</option>
@@ -120,7 +120,6 @@
                         <option value="12">12</option>
                     </select>
                     <label style="font-size:13px">月</label>
-                    <span class="error_message">{{ $errors->first('old_month') }}</span>
 
                     <select class="old_day" name="old_day">
                         <option value="none">-----</option>
@@ -157,9 +156,6 @@
                         <option value="31">31</option>
                     </select>
                     <label style="font-size:13px">日</label>
-                    <span class="error_message">{{ $errors->first('old_day') }}</span>
-
-
                 </div>
 
                 <div class="mt-3">
@@ -198,8 +194,8 @@
                 <div class="mt-3">
                     <label class="d-block m-0" style="font-size:13px">確認用パスワード</label>
                     <div class="border-bottom border-primary">
-                        <input type="password" class="border-0 w-100 password_confirmation" name="password" value="{{ old('password') }}">
-                        <span class="error_message">{{ $errors->first('password') }}</span>
+                        <input type="password" class="border-0 w-100 password_confirmation" name="password_confirmation" value="{{ old('password') }}">
+                        <span class="error_message">{{ $errors->first('password_confirmation') }}</span>
                     </div>
                 </div>
                 <div class="mt-5 text-right">
