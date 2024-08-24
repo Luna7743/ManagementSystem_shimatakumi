@@ -1,5 +1,6 @@
 <?php
 
+//Laravelの例外処理を管理するためのクラス
 namespace App\Exceptions;
 
 use Exception;
@@ -50,6 +51,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //ユーザーがログインタイムアウトなどでセッションが切れた場合に、自動的にログインページへリダイレクトされるように
+        if ($exception instanceof \Illuminate\Auth\AuthenticationException) {
+            return redirect()->guest(route('loginView'));
+        }
+
         return parent::render($request, $exception);
     }
 }

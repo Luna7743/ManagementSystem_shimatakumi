@@ -41,11 +41,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    //ログインビューの表示
     public function loginView()
     {
         return view('auth.login.login');
     }
 
+    //ログイン処理
     public function loginPost(Request $request)
     {
         $userdata = $request -> only('mail_address', 'password');
