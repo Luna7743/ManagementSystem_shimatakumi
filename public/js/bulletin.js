@@ -11,8 +11,9 @@ $(function () {
     $(this).addClass('un_like_btn');
     $(this).removeClass('like_btn');
     var post_id = $(this).attr('post_id');
-    var count = $('.like_counts' + post_id).text();
-    var countInt = Number(count);
+    var count = $('.like_counts' + post_id).text(); //現在のいいね数を取得します
+    var countInt = Number(count); //数字に変換
+
     $.ajax({
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
       method: "post",
@@ -49,6 +50,20 @@ $(function () {
     });
   });
 
+  // いいね数をサーバーから取得して更新する関数
+  function updateLikeCount(post_id) {
+    $.ajax({
+      url: "/get-like-count/" + post_id,
+      method: "GET",
+      success: function (data) {
+        $('.like_counts' + post_id).text(data.like_count);
+      },
+      error: function () {
+        console.log('Failed to update like count');
+      }
+    });
+  }
+
   //編集モーダルの表示と閉じる:
   //編集モーダルを開く
   $('.edit-modal-open').on('click', function () {
@@ -71,4 +86,3 @@ $(function () {
     return false;
   });
 });
-

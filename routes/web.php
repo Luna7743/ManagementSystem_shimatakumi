@@ -88,6 +88,8 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/like/post/{id}', 'PostsController@postLike')->name('post.like');
             //特定の投稿の「いいね」を取り消すルート
             Route::post('/unlike/post/{id}', 'PostsController@postUnLike')->name('post.unlike');
+            // いいねの数を取得する
+            Route::get('/get-like-count/{post_id}', 'PostsController@getLikeCount')->name('getLikeCount');
         });
 
         //ユーザー管理のルート
