@@ -12,11 +12,16 @@ class SubCategory extends Model
         'main_category_id',
         'sub_category',
     ];
-    public function mainCategory(){
-        // リレーションの定義
+
+    // メインカテゴリーとのリレーション
+    public function mainCategory()
+    {
+        return $this->belongsTo(MainCategory::class, 'main_category_id');
     }
 
-    public function posts(){
-        // リレーションの定義
+    // 投稿とのリレーション
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'sub_category_id');
     }
 }
