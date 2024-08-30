@@ -13,6 +13,7 @@ use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use App\Http\Requests\BulletinBoard\PostEditRequest;
+use App\Http\Requests\CommentRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -111,7 +112,7 @@ class PostsController extends Controller
     }
 
     //投稿に新しいコメントを追加
-    public function commentCreate(Request $request)
+    public function commentCreate(CommentRequest $request)
     {
         PostComment::create([
             'post_id' => $request->post_id,
@@ -173,4 +174,3 @@ class PostsController extends Controller
         return response()->json(['like_count' => $post->likes_count]);
     }
 }
-
