@@ -14,6 +14,8 @@ use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use App\Http\Requests\BulletinBoard\PostEditRequest;
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\MaincategoryRequest;
+use App\Http\Requests\SubcategoryRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -105,9 +107,21 @@ class PostsController extends Controller
     }
 
     //新しいメインカテゴリを作成
-    public function mainCategoryCreate(Request $request)
+    public function mainCategoryCreate(MaincategoryRequest $request)
     {
         MainCategory::create(['main_category' => $request->main_category_name]);
+        return redirect()->route('post.input');
+    }
+
+    //新しいサブカテゴリを作成
+    public function subCategoryCreate(SubcategoryRequest $request)
+    {
+        SubCategory::create([
+            'main_category_id' => $request->main_category_id, // 選択されたメインカテゴリーのID
+            'sub_category' => $request->sub_category_name, // フォームで入力されたサブカテゴリー名
+        ]);
+
+        // 投稿入力画面にリダイレクト
         return redirect()->route('post.input');
     }
 

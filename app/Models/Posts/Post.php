@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     const UPDATED_AT = null;
-    const CREATED_AT = null;
+    // const CREATED_AT = null;
 
     protected $fillable = ['user_id', 'post_title', 'post'];
 
@@ -24,7 +24,12 @@ class Post extends Model
     public function subCategories()
     {
         // リレーションの定義
-        // return $this->belongsToMany('App\Models\Categories\SubCategory', 'post_sub_category', 'post_id', 'sub_category_id');
+        return $this->belongsToMany(
+            'App\Models\Categories\SubCategory', // 関連付けるモデル
+            'post_sub_category', // 中間テーブル名
+            'post_id', // 現在のモデルの外部キー
+            'sub_category_id', // 関連付けるモデルの外部キー
+        );
     }
 
     // 指定された投稿 ($post_id) に対するコメントの数を返します
