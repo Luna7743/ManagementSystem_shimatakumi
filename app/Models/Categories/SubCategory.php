@@ -22,6 +22,11 @@ class SubCategory extends Model
     // 投稿とのリレーション
     public function posts()
     {
-        return $this->hasMany(Post::class, 'sub_category_id');
+        return $this->belongsToMany('App\Models\Posts\Post',
+         'post_sub_categories', // 中間テーブル名
+        'sub_category_id', // SubCategory モデルの外部キー
+        'post_id' // Post モデルの外部キー
+        );
+
     }
 }

@@ -17,10 +17,12 @@ class PostComment extends Model
         'comment',
     ];
 
+    // 3. 投稿（Post）モデルとのリレーション定義
     public function post(){
         return $this->belongsTo('App\Models\Posts\Post');
     }
 
+    // 4. 特定のユーザー情報を取得するメソッド
     public function commentUser($user_id){
         return User::where('id', $user_id)->first();
     }

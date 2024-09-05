@@ -11,7 +11,7 @@
                         @if ($errors->first('post_title'))
                             <span class="error_message">{{ $errors->first('post_title') }}</span>
                         @endif
-                        
+
                         @if ($errors->first('post_body'))
                             <span class="error_message">{{ $errors->first('post_body') }}</span>
                         @endif
@@ -27,6 +27,13 @@
                             </div>
                         @endif
                     </div>
+                    {{-- 投稿時選択したサブカテゴリーの表示 --}}
+        {{-- <div class="mt-3">
+            <span>サブカテゴリー:</span>
+            @foreach ($post->subCategories as $subCategory)
+                <span>{{ $subCategory->sub_category }}</span>
+            @endforeach
+        </div> --}}
 
                     {{-- 投稿者情報と投稿内容 --}}
                     <div class="contributor d-flex">

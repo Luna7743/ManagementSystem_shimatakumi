@@ -26,8 +26,8 @@ class Post extends Model
         // リレーションの定義
         return $this->belongsToMany(
             'App\Models\Categories\SubCategory', // 関連付けるモデル
-            'post_sub_category', // 中間テーブル名
-            'post_id', // 現在のモデルの外部キー
+            'post_sub_categories', // 中間テーブル名
+            'post_id', // Post モデルの外部キー
             'sub_category_id', // 関連付けるモデルの外部キー
         );
     }
@@ -35,7 +35,6 @@ class Post extends Model
     // 指定された投稿 ($post_id) に対するコメントの数を返します
     public function commentCounts($post_id)
     {
-        // return Post::with('postComments')->find($post_id)->postComments();
         return Post::withCount('postComments')->find($post_id)->post_comments_count;
     }
 

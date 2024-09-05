@@ -8,7 +8,6 @@
             <div class="">
                 <p class="mb-0">カテゴリー</p>
                 <select class="w-100" form="postCreate" name="post_category_id">
-                    <option value="" disabled>教科</option>
                     @foreach ($main_categories as $main_category)
                         <!-- メインカテゴリーを選択肢として追加 -->
                         <option value="{{ $main_category->id }}" disabled>{{ $main_category->main_category }}</option>
