@@ -23,53 +23,54 @@ class PostsController extends Controller
     // //投稿の一覧を表示
     public function show(Request $request)
     {
-        //投稿一覧を取得するためのクエリビルダーを初期化
-        $query = Post::with(['user', 'postComments', 'subCategories']) //投稿に関連するユーザー、コメント、サブカテゴリーを一緒に取得
-            ->withCount('likes'); // 各投稿に対する「いいね」の数をカウント
+        // 投稿と関連するユーザー、コメント、サブカテゴリーを取得
+        $posts = Post::with(['user', 'postComments', 'subCategories'])
+            ->withCount('likes') // 各投稿に対する「いいね」の数をカウント
+            ->get();
+        $categories = MainCategory::with('subCategories')->get(); // メインカテゴリーとサブカテゴリーを取得
+        $like = new Like();
+        $post_comment = new Post();
 
-        //キーワード検索の処理
-        //検索キーワードが入力されているか確認
-        if(!empty($request->keyword)){
-            //投稿が指定されたサブカテゴリーに関連付けられているかを確認
-            $query->whereHas('subCategories', function ($query) use ($request){
-                //サブカテゴリー名がキーワードと完全一致する投稿をフィルタリング
-                $query->where('sub_category', $request->keyword);
-            });
+        // キーワード検索の処理
+        if (!empty($request->keyword)) {
+            $posts = Post::with(['user', 'postComments', 'subCategories'])
+                ->withCount('likes')
+                ->where(function ($query) use ($request) {
+                    $query->where('post_title', 'like', '%' . $request->keyword . '%')
+                          ->orWhere('post', 'like', '%' . $request->keyword . '%');
+                })
+                ->orWhereHas('subCategories', function ($query) use ($request) {
+                    $query->where('sub_category', $request->keyword);
+                })
+                ->get();
 
-        //サブカテゴリー検索の処理
-            //フォームから送信されたサブカテゴリーの検索条件
+            // カテゴリー検索の処理
         } elseif ($request->category_word) {
             $sub_category = $request->category_word;
-            //投稿が指定されたサブカテゴリーに関連付けられているかを確認
-            $query->whereHas('subCategories', function ($query) use ($sub_category) {
-                //サブカテゴリー名が指定された文字列と一致する投稿をフィルタリング
-                $query->where('sub_category', $sub_category);
-            });
+            $posts = Post::with(['user', 'postComments', 'subCategories'])
+                ->withCount('likes')
+                ->whereHas('subCategories', function ($posts) use ($sub_category) {
+                    $posts->where('sub_category', '=', $sub_category); //ここ帰る必要性があるかも
+                })
+                ->get();
+            // dd($posts);
 
-        //ユーザーが「いいね」した投稿のみを表示
-            //ユーザーが「いいね」した投稿を表示するかどうかを示すリクエストパラメータ
+            // いいねした投稿の表示
         } elseif ($request->like_posts) {
-            //ログインしているユーザーが「いいね」した投稿のIDを取得
-            $likes = Auth::user()->likePostId()->pluck('like_post_id');
-            //投稿IDがユーザーの「いいね」リストに含まれているものをフィルタリング
-            $query->whereIn('id', $likes);
+            $likes = Auth::user()->likePostId()->get('like_post_id');
+            $posts = Post::with(['user', 'postComments'])
+                ->withCount('likes')
+                ->whereIn('id', $likes)
+                ->get();
 
-        //自分の投稿の表示
-            //ユーザーが自分の投稿のみを表示するかどうかを示すリクエストパラメータ
+            // 自分の投稿の表示
         } elseif ($request->my_posts) {
-            //投稿の user_id が現在のユーザーのIDと一致するものをフィルタリング
-            $query->where('user_id', Auth::id());
+            $posts = Post::with(['user', 'postComments'])
+                ->withCount('likes')
+                ->where('user_id', Auth::id())
+                ->get();
         }
-
-        //上記の条件を適用した投稿の一覧をデータベースから取得
-        $posts = $query->get();
-
-        //メインカテゴリーとそれに関連するサブカテゴリーの一覧を取得
-        //with('subCategories'): メインカテゴリーに関連するサブカテゴリーを一緒に取得します
-        $categories = MainCategory::with('subCategories')->get();
-
-        //取得した投稿とカテゴリーのデータをビューに渡して表示
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
 
     //指定されたIDの投稿の詳細を表示
