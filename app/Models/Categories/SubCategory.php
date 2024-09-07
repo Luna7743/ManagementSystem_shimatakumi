@@ -17,6 +17,7 @@ class SubCategory extends Model
     public function mainCategory()
     {
         return $this->belongsTo(MainCategory::class, 'main_category_id');
+        //belongsTo:1つのサブカテゴリーは、1つのメインカテゴリーに属している関係を定義しています。
     }
 
     // 投稿とのリレーション

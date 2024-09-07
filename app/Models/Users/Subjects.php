@@ -16,7 +16,7 @@ class Subjects extends Model
     ];
 
     public function users(){
-        // リレーションの定義
+        // usersリレーションの定義
         return $this->belongsToMany(User::class, 'subject_users', 'subject_id', 'user_id');
     }
 }
