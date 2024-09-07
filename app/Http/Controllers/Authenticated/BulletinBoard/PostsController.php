@@ -49,8 +49,8 @@ class PostsController extends Controller
             $sub_category = $request->category_word;
             $posts = Post::with(['user', 'postComments', 'subCategories'])
                 ->withCount('likes')
-                ->whereHas('subCategories', function ($posts) use ($sub_category) {
-                    $posts->where('sub_category', '=', $sub_category); //ここ帰る必要性があるかも
+                ->whereHas('subCategories', function ($query) use ($sub_category) {
+                    $query->where('sub_category', $sub_category);
                 })
                 ->get();
             // dd($posts);
