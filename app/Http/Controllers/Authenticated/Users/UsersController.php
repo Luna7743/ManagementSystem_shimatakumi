@@ -17,7 +17,6 @@ use App\Searchs\SearchResultFactories;//検索結果を生成するためのク�
 
 class UsersController extends Controller
 {
-
     // ユーザーの検索結果を表示するページにデータを渡す
     public function showUsers(Request $request){
         $keyword = $request->keyword;//検索キーワードを取得
@@ -61,5 +60,3 @@ class UsersController extends Controller
         return redirect()->route('user.profile', ['id' => $request->user_id]);
     }
 }
-
-
