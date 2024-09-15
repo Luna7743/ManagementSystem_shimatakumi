@@ -3,7 +3,7 @@ namespace App\Searchs;
 
 use App\Models\Users\User;
 
-// 選択科目を含む複数の条件でユーザーを検索するために実装
+// IDに基づく検索に加えて、科目などの詳細な条件も使ってユーザーをフィルタリングする。
 class SelectIdDetails implements DisplayUsers{
 
   // 改修課題：選択科目の検索機能

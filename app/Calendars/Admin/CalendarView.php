@@ -1,4 +1,5 @@
 <?php
+// Laravel アプリケーションでカレンダーを表示するためのクラス
 namespace App\Calendars\Admin;
 use Carbon\Carbon;
 use App\Models\Users\User;
@@ -6,14 +7,17 @@ use App\Models\Users\User;
 class CalendarView{
   private $carbon;
 
+  // カレンダーの基準日（$date）をセット
   function __construct($date){
     $this->carbon = new Carbon($date);
   }
 
+  // カレンダーのタイトルを取得
   public function getTitle(){
     return $this->carbon->format('Y年n月');
   }
 
+  // カレンダーをHTML形式で生成
   public function render(){
     $html = [];
     $html[] = '<div class="calendar text-center">';
@@ -57,6 +61,7 @@ class CalendarView{
     return implode("", $html);
   }
 
+  // カレンダーの月に対応するすべての週を取得
   protected function getWeeks(){
     $weeks = [];
     $firstDay = $this->carbon->copy()->firstOfMonth();

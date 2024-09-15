@@ -1,5 +1,5 @@
 <?php
-
+// Laravelで予約設定の情報を管理するためのモデル
 namespace App\Models\Calendars;
 
 use Illuminate\Database\Eloquent\Model;

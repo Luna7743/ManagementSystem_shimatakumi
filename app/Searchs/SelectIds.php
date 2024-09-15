@@ -3,7 +3,7 @@ namespace App\Searchs;
 
 use App\Models\Users\User;
 
-// IDに基づいたユーザー検索を行うクラス
+// IDに基づいてユーザーを検索するシンプルな検索機能。
 class SelectIds implements DisplayUsers{
 
   // 改修課題：選択科目の検索機能

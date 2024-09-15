@@ -3,7 +3,7 @@ namespace App\Searchs;
 
 use App\Models\Users\User;
 
-// ユーザーの名前、性別、役割、科目などの条件に基づいてユーザーを検索するクラス
+// 名前（またはカナ）に基づく検索に加えて、科目を使った詳細なフィルタリングを行う。
 class SelectNameDetails implements DisplayUsers{
 
   // 改修課題：選択科目の検索機能

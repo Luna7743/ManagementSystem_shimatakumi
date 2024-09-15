@@ -1,5 +1,5 @@
 @extends('layouts.sidebar')
-
+{{-- ユーザーのリストや特定の日付・時間に関連する情報を表示するための画面 --}}
 @section('content')
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
   <div class="w-50 m-auto h-75">

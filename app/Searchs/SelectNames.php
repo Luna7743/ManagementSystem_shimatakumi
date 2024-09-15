@@ -3,7 +3,7 @@ namespace App\Searchs;
 
 use App\Models\Users\User;
 
-// ユーザー検索機能において、名前や名前のカナ、性別、役割を条件にユーザーを検索するために使用されるクラス
+// 名前（またはカナ）に基づいてユーザーを検索するためのシンプルな検索機能。
 class SelectNames implements DisplayUsers{
 
   public function resultUsers($keyword, $category, $updown, $gender, $role, $subjects){
