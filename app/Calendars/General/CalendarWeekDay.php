@@ -1,4 +1,5 @@
 <?php
+// カレンダーの日付ごとの予約システムを表示
 namespace App\Calendars\General;
 
 use App\Models\Calendars\ReserveSettings;
@@ -29,6 +30,7 @@ class CalendarWeekDay{
    }
 
    function selectPart($ymd){
+    // 予約枠を取得する処理
      $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
      $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
      $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
@@ -49,6 +51,7 @@ class CalendarWeekDay{
      }
 
      $html = [];
+     // 各部の枠数が0かどうかでHTMLを生成する
      $html[] = '<select name="getPart[]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
      $html[] = '<option value="" selected></option>';
      if($one_part_frame == "0"){

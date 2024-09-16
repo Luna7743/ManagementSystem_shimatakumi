@@ -19,5 +19,34 @@
       <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts">
     </div>
   </div>
+
+  {{-- 予約キャンセルのモーダル --}}
+  <div class="modal js-modal">
+    {{-- モーダルの背景部分 --}}
+    <div class="modal__bg js-modal-close"></div>
+    <div class="modal__content">
+      <div class="">
+        <div class="modal-inner-date">
+          <p>予約日:</p>
+          <input type="text" class="modal_date" name="getDate" value="" form="deleteParts" readonly>
+        </div>
+
+        <div class="modal-inner-time">
+          <p>時間:リモ</p>
+          <input type="text" class="modal_part" name="getPart" value="" form="deleteParts" readonly>
+          <p>部</p>
+        </div>
+
+        <div class="">
+          上記の予約をキャンセルしてもよろしいでしょうか？
+        </div>
+
+        <div class="edit-modal-btn">
+          <a class="js-modal-close" href="#">閉じる</a>
+          <input type="submit" class="" value="キャンセル" form="deleteParts">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
