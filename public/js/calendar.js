@@ -12,7 +12,7 @@ $(function () {
     return false; // デフォルトの動作をキャンセル
   });
 
-  // モーダルの背景をクリックで閉じる
+  // モーダルの背景と「閉じるボタン」をクリックで閉じる
   $('.js-modal-close').on('click', function () {
     $('.js-modal').fadeOut();
     return false; // デフォルトの動作をキャンセル

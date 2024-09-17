@@ -38,6 +38,7 @@ class CalendarsController extends Controller
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
 
+    // 予約をキャンセルするための機能
     public function delete(Request $request){
     DB::beginTransaction();
     try{
@@ -49,6 +50,7 @@ class CalendarsController extends Controller
                                           ->where('setting_part', $getPart)
                                           ->first();
 
+        // 該当の予約が見つかった場合に実行
         if ($reserve_setting) {
             // ユーザーの予約解除
             $reserve_setting->users()->detach(Auth::id());

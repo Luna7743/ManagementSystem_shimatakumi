@@ -1,4 +1,5 @@
 <?php
+// 指定された日付に関連する予約情報を処理し、カレンダーに表示するための機能
 namespace App\Calendars\Admin;
 
 use Carbon\Carbon;
@@ -31,13 +32,22 @@ class CalendarWeekDay{
 
     $html[] = '<div class="text-left">';
     if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1">1部</p>';
+      $html[] = '<div class="d-flex">';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]).'">1部</a></p>';
+      $html[] = '<p class="day_part m-0 pt-1">'.$one_part->users()->count().'</p>';
+      $html[] = '</div>';
     }
     if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+      $html[] = '<div class="d-flex">';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]).'">2部</a></p>';
+      $html[] = '<p class="day_part m-0 pt-1">'.$two_part->users()->count().'</p>';
+      $html[] = '</div>';
     }
     if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
+      $html[] = '<div class="d-flex">';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]).'">3部</a></p>';
+      $html[] = '<p class="day_part m-0 pt-1">'.$three_part->users()->count().'</p>';
+      $html[] = '</div>';
     }
     $html[] = '</div>';
 

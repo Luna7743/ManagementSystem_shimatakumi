@@ -1,4 +1,5 @@
 <?php
+// Laravelのカレンダー設定画面をHTML形式で描画するためのクラス
 namespace App\Calendars\Admin;
 use Carbon\Carbon;
 use App\Models\Calendars\ReserveSettings;
@@ -10,10 +11,12 @@ class CalendarSettingView{
     $this->carbon = new Carbon($date);
   }
 
+  // カレンダーのタイトルを表示するためのメソッド
   public function getTitle(){
     return $this->carbon->format('Y年n月');
   }
 
+  // カレンダーの基本構造をHTMLで作成
   public function render(){
     $html = [];
     $html[] = '<div class="calendar text-center">';
@@ -32,6 +35,7 @@ class CalendarSettingView{
     $html[] = '<tbody>';
     $weeks = $this->getWeeks();
 
+    // 週間の表示
     foreach($weeks as $week){
       $html[] = '<tr class="'.$week->getClassName().'">';
       $days = $week->getDays();
@@ -46,12 +50,15 @@ class CalendarSettingView{
         }
         $html[] = $day->render();
         $html[] = '<div class="adjust-area">';
+        // 日付ごとの予約枠表示
         if($day->everyDay()){
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+            // 過去日の場合
             $html[] = '<p class="d-flex m-0 p-0">1部<input class="w-25" style="height:20px;" name="reserve_day['.$day->everyDay().'][1]" type="text" form="reserveSetting" value="'.$day->onePartFrame($day->everyDay()).'" disabled></p>';
             $html[] = '<p class="d-flex m-0 p-0">2部<input class="w-25" style="height:20px;" name="reserve_day['.$day->everyDay().'][2]" type="text" form="reserveSetting" value="'.$day->twoPartFrame($day->everyDay()).'" disabled></p>';
             $html[] = '<p class="d-flex m-0 p-0">3部<input class="w-25" style="height:20px;" name="reserve_day['.$day->everyDay().'][3]" type="text" form="reserveSetting" value="'.$day->threePartFrame($day->everyDay()).'" disabled></p>';
           }else{
+            // 未来日・現在日（過去日以外）の場合
             $html[] = '<p class="d-flex m-0 p-0">1部<input class="w-25" style="height:20px;" name="reserve_day['.$day->everyDay().'][1]" type="text" form="reserveSetting" value="'.$day->onePartFrame($day->everyDay()).'"></p>';
             $html[] = '<p class="d-flex m-0 p-0">2部<input class="w-25" style="height:20px;" name="reserve_day['.$day->everyDay().'][2]" type="text" form="reserveSetting" value="'.$day->twoPartFrame($day->everyDay()).'"></p>';
             $html[] = '<p class="d-flex m-0 p-0">3部<input class="w-25" style="height:20px;" name="reserve_day['.$day->everyDay().'][3]" type="text" form="reserveSetting" value="'.$day->threePartFrame($day->everyDay()).'"></p>';
@@ -69,6 +76,7 @@ class CalendarSettingView{
     return implode("", $html);
   }
 
+  // 指定された月のすべての週を取得
   protected function getWeeks(){
     $weeks = [];
     $firstDay = $this->carbon->copy()->firstOfMonth();

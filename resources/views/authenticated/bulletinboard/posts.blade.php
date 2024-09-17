@@ -71,13 +71,14 @@
                                 <span>{{ $category->main_category }}</span>
                                 {{-- メインカテゴリーに関連付けられたサブカテゴリーをループで表示 --}}
                                 @foreach ($category->subCategories as $sub_category)
-                                    <li class="sub_category_box category_num{{ $category->id }}">
-                                        <button type="submit" name="category_word" value="{{ $sub_category->sub_category }}" class="btn btn-link">
-                                            {{ $sub_category->sub_category }}
-                                        </button>
-                                    </li>
-                                @endforeach
+                            <li class="sub_category_box category_num{{ $category->id }}">
+                                <button type="submit" name="category_word" value="{{ $sub_category->sub_category }}"
+                                    class="btn btn-link">
+                                    {{ $sub_category->sub_category }}
+                                </button>
                             </li>
+                        @endforeach
+                        </li>
                         @endforeach
                     </ul>
                 </form>
