@@ -19,21 +19,14 @@
                         <div></div>
 
                         @if ($post->user_id == Auth::id())
-                            <div>
-                                <span class="edit-modal-open" post_title="{{ $post->post_title }}"
+                            <div class="edit-modal-btn d-flex">
+                                <span class="edit-modal-open btn btn-danger d-inline-block" post_title="{{ $post->post_title }}"
                                     post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-                                <a href="{{ route('post.delete', ['id' => $post->id]) }}"
+                                <a class="btn btn-primary d-block" href="{{ route('post.delete', ['id' => $post->id]) }}"
                                     onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a>
                             </div>
                         @endif
                     </div>
-                    {{-- 投稿時選択したサブカテゴリーの表示 --}}
-        {{-- <div class="mt-3">
-            <span>サブカテゴリー:</span>
-            @foreach ($post->subCategories as $subCategory)
-                <span>{{ $subCategory->sub_category }}</span>
-            @endforeach
-        </div> --}}
 
                     {{-- 投稿者情報と投稿内容 --}}
                     <div class="contributor d-flex">

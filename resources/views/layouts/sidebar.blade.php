@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>AtlasBulletinBoard</title>
+  <script src="https://kit.fontawesome.com/64189e7720.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -19,17 +20,17 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><a href="{{ route('top.show') }}">トップ</a></p>
-      <p><a href="/logout">ログアウト</a></p>
-      <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+      <p class="fa-solid fa-house"><a href="{{ route('top.show') }}">マイページ</a></p>
+      <p class="fa-solid fa-arrow-right-from-bracket"><a href="/logout">ログアウト</a></p>
+      <p class="fa-solid fa-calendar-minus"><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
 
       @if (in_array(Auth::user()->role, [1,2,3]))
-        <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-        <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+        <p class="fa-solid fa-calendar-check"><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
+        <p class="fa-solid fa-calendar-plus"><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
       @endif
 
-      <p><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+      <p class="fa-solid fa-message"><a href="{{ route('post.show') }}">掲示板</a></p>
+      <p class="fa-solid fa-user-group"><a href="{{ route('user.show') }}">ユーザー検索</a></p>
       @show
     </div>
     <div class="main-container">
@@ -43,5 +44,3 @@
   <script src="{{ asset('js/calendar.js') }}" rel="stylesheet"></script>
 </body>
 </html>
-
-

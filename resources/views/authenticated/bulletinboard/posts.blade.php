@@ -15,7 +15,6 @@
                     <div class="post_bottom_area d-flex">
                         {{-- サブカテゴリーの表示 --}}
                         @foreach ($post->subCategories as $subCategory)
-                            {{-- <button class="subcategory_button" type="" name="button">{{ $subCategory->sub_category }}</button> --}}
                             <span class="">{{ $subCategory->sub_category }}</span>
                         @endforeach
 
