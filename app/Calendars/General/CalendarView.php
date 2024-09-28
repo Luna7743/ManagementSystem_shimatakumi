@@ -31,8 +31,8 @@ class CalendarView
         $html[] = '<th>水</th>';
         $html[] = '<th>木</th>';
         $html[] = '<th>金</th>';
-        $html[] = '<th class="day-sat">土</th>';
-        $html[] = '<th class="day-sun">日</th>';
+        $html[] = '<th class="sat">土</th>';
+        $html[] = '<th class="sun">日</th>';
         $html[] = '</tr>';
         $html[] = '</thead>';
         $html[] = '<tbody>';

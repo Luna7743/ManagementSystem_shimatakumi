@@ -86,3 +86,27 @@ $(function () {
     return false;
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // 全てのメインカテゴリーを取得
+  const mainCategories = document.querySelectorAll('.main_categories_title');
+
+  // それぞれのメインカテゴリーにクリックイベントを追加
+  mainCategories.forEach(function (category) {
+    category.addEventListener('click', function () {
+      // クリックしたメインカテゴリーの次の要素としてサブカテゴリーリストを取得
+      const subCategories = this.nextElementSibling;
+
+      // サブカテゴリーを表示・非表示に切り替え
+      if (subCategories.style.display === 'none' || subCategories.style.display === '') {
+        subCategories.style.display = 'block'; // 表示
+      } else {
+        subCategories.style.display = 'none';  // 非表示
+      }
+
+      // 矢印の向きを切り替えるために.activeクラスをトグル
+      this.classList.toggle('active');
+    });
+  });
+});

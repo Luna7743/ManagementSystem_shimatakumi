@@ -21,7 +21,7 @@ class CalendarWeekDay
 
     function render()
     {
-        return '<p class="days">' . $this->carbon->format('j') . '日</p>';
+        return '<p class="day">' . $this->carbon->format('j') . '日</p>';
     }
 
     function everyDay()

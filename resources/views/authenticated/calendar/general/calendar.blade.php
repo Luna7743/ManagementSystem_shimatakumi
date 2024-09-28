@@ -26,24 +26,24 @@
     <div class="modal__bg js-modal-close"></div>
     <div class="modal__content">
       <div class="w-100">
-        <div class="modal-inner-date w-60 m-auto pt-3 pb-3">
+        <div class="modal-inner-date w-60 m-auto  pb-3 d-flex" style="align-items: baseline">
           <p>予約日:</p>
           <input type="text" class="modal_date" name="getDate" value="" form="deleteParts" readonly>
         </div>
 
-        <div class="modal-inner-time w-60 m-auto pt-3 pb-3">
+        <div class="modal-inner-time w-60 m-auto pb-3 d-flex" style="align-items: baseline">
           <p>時間:リモ</p>
           <input type="text" class="modal_part" name="getPart" value="" form="deleteParts" readonly>
           <p>部</p>
         </div>
 
-        <div class="w-60 m-auto pt-3 pb-3">
+        <div class="w-60 m-auto pb-3">
           <p>上記の予約をキャンセルしてもよろしいでしょうか？</p>
         </div>
 
         <div class="edit-modal-btn w-60 m-auto edit-modal-btn d-flex">
-          <a class="js-modal-close btn btn-danger d-inline-block" href="#">閉じる</a>
-          <input type="submit" class="btn btn-primary d-block" value="キャンセル" form="deleteParts">
+          <a class="js-modal-close btn  btn-primary d-inline-block" href="#">閉じる</a>
+          <input type="submit" class="btn  btn-danger d-block" value="キャンセル" form="deleteParts">
         </div>
       </div>
     </div>

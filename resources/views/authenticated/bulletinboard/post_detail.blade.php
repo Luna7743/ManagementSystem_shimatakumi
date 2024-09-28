@@ -5,24 +5,30 @@
         <div class="w-50 mt-5">
             <div class="m-3 detail_container">
                 <div class="p-3">
+                    {{-- バリデーションメッセージ --}}
+                    @if ($errors->first('post_title'))
+                        <span class="error_message">{{ $errors->first('post_title') }}</span>
+                    @endif
+
+                    @if ($errors->first('post_body'))
+                        <span class="error_message">{{ $errors->first('post_body') }}</span>
+                    @endif
                     {{-- 投稿の操作（編集・削除） --}}
                     <div class="detail_inner_head">
-                        {{-- バリデーションメッセージ --}}
-                        @if ($errors->first('post_title'))
-                            <span class="error_message">{{ $errors->first('post_title') }}</span>
-                        @endif
-
-                        @if ($errors->first('post_body'))
-                            <span class="error_message">{{ $errors->first('post_body') }}</span>
-                        @endif
+                        {{-- サブカテゴリーの表示 --}}
+                        <div style="margin-bottom: 10px;">
+                            @foreach ($post->subCategories as $subCategory)
+                                <span class="sub_cate">{{ $subCategory->sub_category }}</span>
+                            @endforeach
+                        </div>
 
                         <div></div>
 
                         @if ($post->user_id == Auth::id())
                             <div class="edit-modal-btn d-flex">
-                                <span class="edit-modal-open btn btn-danger d-inline-block" post_title="{{ $post->post_title }}"
+                                <span class="edit-modal-open edit-btn" post_title="{{ $post->post_title }}"
                                     post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-                                <a class="btn btn-primary d-block" href="{{ route('post.delete', ['id' => $post->id]) }}"
+                                <a class="d-block delete-btn" href="{{ route('post.delete', ['id' => $post->id]) }}"
                                     onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a>
                             </div>
                         @endif
@@ -63,14 +69,19 @@
         {{-- コメント入力エリア --}}
         <div class="w-50 p-3">
             <div class="comment_container border m-5">
-                @if ($errors->first('comment'))
-                    <span class="error_message">{{ $errors->first('comment') }}</span>
-                @endif
+                <div class="comment_error_message">
+                    @if ($errors->first('comment'))
+                        <span class="error_message">{{ $errors->first('comment') }}</span>
+                    @endif
+                </div>
+
                 <div class="comment_area p-3">
                     <p class="m-0">コメントする</p>
                     <textarea class="w-100" name="comment" form="commentRequest"></textarea>
                     <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
-                    <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
+                    <div class="text-right">
+                        <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
+                    </div>
                     <form action="{{ route('comment.create') }}" method="post" id="commentRequest">{{ csrf_field() }}
                     </form>
                 </div>
