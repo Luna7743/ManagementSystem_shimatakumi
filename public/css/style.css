@@ -8,12 +8,14 @@ padding: 0;
 .all_content{
 background:#ECF1F6;
 }
+
+body{
+position: relative;
+}
+
 ul,
 li{
 list-style:none;
-}
-body{
-overflow: hidden;
 }
 
 /* カレンダー日付 */
@@ -27,16 +29,20 @@ color: #FF0000;
 
 /* ログイン画面 */
 .logo-image {
-display: flex;
-margin: 0 auto;
-position: relative;
-top: 30vh;
+margin: 20px 125px;
 width: 200px;
 height: 75px;
 }
 
+.login-list{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
 .login-field {
-width: 30%;
+width: 450px;
 background-color: #fff;
 border-radius: 10px;
 box-shadow: 1px 5px 15px #ccc;;
@@ -73,6 +79,8 @@ background-color:#03AAD2;
 font-weight:bold;
 padding: 5px;
 padding-top: 20px;
+position: fixed;
+overflow-y: auto;
 }
 .main-container{
 width:100%;
@@ -95,6 +103,13 @@ background:#FFF;
 .my-pro {
 margin-top: 20px;
 margin-left: 15px;
+}
+
+/* カレンダーのコンテナ */
+.calendar-container {
+margin-left: 200px;
+padding: 10px;
+min-height: 100vh;
 }
 
 /* スクール予約関連 */

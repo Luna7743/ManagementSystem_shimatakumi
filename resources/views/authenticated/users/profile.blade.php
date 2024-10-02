@@ -1,8 +1,9 @@
 @extends('layouts.sidebar')
 
 @section('content')
+<div class="calendar-container">
     {{-- ユーザーのプロフィール表示部分 --}}
-    <div class="vh-100 border">
+    <div class="vh-100">
         <div class="my-pro">
             <span>{{ $user->over_name }}</span><span>{{ $user->under_name }}さんのプロフィール</span>
         </div>
@@ -45,5 +46,5 @@
             </div>
         </div>
     </div>
-
+</div>
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
+<div class="calendar-container">
     <div class="search_content w-100 d-flex">
         {{-- ユーザー一覧の表示部分 --}}
         <div class="reserve_users_area">
@@ -141,4 +142,5 @@
             <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
         </div>
     </div>
+</div>
 @endsection
